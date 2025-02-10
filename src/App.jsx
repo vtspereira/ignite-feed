@@ -5,6 +5,37 @@ import { Sidebar } from "./components/Sidebar";
 import './global.css';
 import styles from './App.module.css';
 
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: 'https://github.com/vtspereira.png',
+      name: 'Vitor Pereira',
+      role: 'Developer fullstack'
+    },
+    content: [
+      { type: 'paragraph', content: 'Fala galera 👋' },
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀' },
+      { type: 'link', content: 'jane.design/doctorcare' },
+    ],
+    publishedAt: new Date('2025-02-09 21:40:00'),
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl: 'https://github.com/maykbrito.png',
+      name: 'Mayk Brito',
+      role: 'Educator @Rocketseat'
+    },
+    content: [
+      { type: 'paragraph', content: 'Fala galera 👋' },
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀' },
+      { type: 'link', content: 'jane.design/doctorcare' },
+    ],
+    publishedAt: new Date('2025-02-05 20:00:00'),
+  },
+];
+
 function App() {
   return (
     <div>
@@ -13,14 +44,15 @@ function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post 
-            author="Diego Fernandades"
-            content="ipsum dolor sit amet consectetur adipisicing elit. Nobis porro eum vero quo, officia commodi quasi similique at? Animi velit consectetur iusto atque! Tempora esse temporibus sunt dignissimos commodi rem."
-          />
-          <Post 
-            author="Gabriel Buzzi"
-            content="Um novo post muito legal"
-          />
+        {posts.map(post => {
+            return (
+              <Post
+                author={post.author}
+                content={post.content}
+                publishedAt={post.publishedAt}
+              />
+            )
+          })}
         </main>
       </div>
     </div>
